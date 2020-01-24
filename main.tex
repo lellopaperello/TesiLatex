@@ -1,0 +1,87 @@
+\documentclass[a4paper,12pt,twoside,titlepage,openright]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{microtype} % spezza le parole andando a capo solo se c'è DAVVERO bisogno
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{geometry}
+\usepackage{todonotes}
+\usepackage[autostyle=true,english=british]{csquotes}
+\usepackage[backend=biber,
+style=numeric,
+sortlocale=de_DE,
+natbib=true,
+url=false, 
+doi=true,
+eprint=false]{biblatex} 
+\usepackage{latexsym}
+\usepackage{float}
+\usepackage{bm}
+\usepackage[format=plain,labelfont=bf]{caption}
+\usepackage{subfig}
+\usepackage[italian,english]{babel}
+\usepackage[hidelinks]{hyperref} % aggiungere [hidelinks] per nascondere i quadranti rossi
+\usepackage{cleveref}
+\usepackage{afterpage} % permette di inserire pagine bianche
+\usepackage{indentfirst} % indenta la prima riga di ogni nuova sezione
+\usepackage{booktabs} % per le tabelle, permette di usare \toprule ecc
+\usepackage{mathtools}
+\usepackage{braket} %per fare le parentesi graffe degli insiemi
+\usepackage{abraces}
+\usepackage{multirow}
+\usepackage{tablefootnote}
+\usepackage[binding=5mm]{layaureo} 	% margini ottimizzati per l'A4; rilegatura di 5 mm
+\usepackage[swapnames]{frontespizio}	% frontespizio 
+%		% per includerlo nel documento bisogna:
+%		% 1. compilare una prima volta main.tex;
+%		% 2. compilare a parte main-frn.tex, generato dalla compilazione precedente;
+%		% 3. compilare ancora main.tex.
+%		% Non è necessario fare questi passaggi altre volte
+%		% se il frontespizio non è più modificato.
+\usepackage{changepage,calc}                 % centra il frontespizio
+\usepackage{emptypage}		% pagine vuote senza testatina e piede di pagina
+\usepackage{fancyhdr}		% testatine e piede personalizzati
+\setlength{\headheight}{15pt}
+\usepackage[super]{nth} % permette di usare \nth{1}, \nth{2}, \nth{3}, \nth{4} per 1st, 2nd ecc
+\usepackage[footnote,		% descrizione acronimo fatta a piè di pagina
+smaller,			% acronimo scritto con dimensione ridotta
+]{acronym}		% acronimi
+\usepackage{siunitx}
+%\usepackage[symbols,nogroupskip,nonumberlist,automake]{glossaries-extra}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\addbibresource{references/references.bib} %directory con le references
+\AtBeginDocument{%
+	\renewcommand*{\mkbibnamefamily}[1]{\textsc{#1}}
+}
+
+\input{ImpostazioniTesi}
+
+\begin{document}
+	
+\frontmatter
+\input{frontespizio}
+\cleardoublepage
+%inserire tutto ciò che è personale
+%\input{secretato}
+\cleardoublepage
+\tableofcontents
+\listoffigures
+\listoftables
+
+\cleardoublepage
+
+\mainmatter
+%\input{intro}
+\input{SU2}
+\input{PoliMIce}
+
+\cleardoublepage
+	
+\printbibliography[heading=bibintoc]
+\end{document}

@@ -1,0 +1,67 @@
+% ------------------------------------------------------------------------ %
+% !TEX encoding = UTF-8 Unicode
+% !TEX TS-program = pdflatex
+% !TEX root = ../main.tex
+% !TEX spellcheck = it-IT
+% ------------------------------------------------------------------------ %
+
+\captionsetup{tableposition=top,
+	figureposition=bottom,
+	font=small,
+	labelfont=bf}
+
+\pagestyle{fancy}			% sostituisce \pagestyle{header} standard
+
+\makeatletter 			% necessary for using \@chapapp
+\renewcommand{\chaptermark}[1]{	% ridefinisce indicazione capitolo
+  \markboth{\@chapapp\ \thechapter.\ #1}{}} % distinzione 'Capitolo' / 'Appendice'
+\makeatother
+%
+\renewcommand{\sectionmark}[1]{	% ridefinisce indicazione sezione
+	\markright{\thesection.\ #1}}
+%
+\fancyhf{}				% svuota testatine e piede
+%
+\fancyhead[LE,RO]{\bfseries\thepage}	% numero pagine in alto
+%
+\fancyhead[LO]{\bfseries\rightmark}	% info sezione nelle pag. dispari
+%
+\fancyhead[RE]{\bfseries\leftmark}	% info capitolo nelle pag.pari
+%
+\renewcommand{\headrulewidth}{0.4pt}	% spessore linea header
+%
+\renewcommand{\footrulewidth}{0pt}	% spessore linea footer (0pt=nascosta)
+%
+\fancypagestyle{plain}{				% ridefinizione stile inizio capitolo
+		\fancyhead{}			% header vuoto
+		\fancyfoot[C]{\bfseries\thepage}		% numeri in grassetto al centro
+		\renewcommand{\headrulewidth}{0pt}	% no linea
+		}
+%
+\newcommand{\scitel}[1]{$^[$\supercite{#1}$^]$}
+\newcommand{\scitec}[1]{$^[$\supercite{#1}$^{],}$}
+
+%\makeglossaries
+
+%\glsxtrnewsymbol[description={angle of attack}]{alpha}{\ensuremath{\alpha}}
+%\glsxtrnewsymbol[description={2-D lift coefficinet}]{Cl}{\ensuremath{C_l}}
+%\glsxtrnewsymbol[description={vortex generator chord}]{cvg}{\ensuremath{c_{vg}}}
+%\glsxtrnewsymbol[description={target profile chord}]{ctp}{\ensuremath{c_{tp}}}
+%\glsxtrnewsymbol[description={vortex core diameter}]{dcore}{\ensuremath{d_{core}}}
+%\glsxtrnewsymbol[description={vorticity vector}]{omega}{\ensuremath{\bm{\omega}}}
+%\glsxtrnewsymbol[description={frequency}]{freq}{\ensuremath{\omega}}
+%\glsxtrnewsymbol[description={lift for unit span}]{L2D}{\ensuremath{L_{2D}}}
+%\glsxtrnewsymbol[description={air kinematic viscosity}]{nu}{\ensuremath{\nu}}
+%\glsxtrnewsymbol[description={air density}]{rho}{\ensuremath{\rho}}
+%\glsxtrnewsymbol[description={radial distance from the vortex center}]{r}{\ensuremath{r}}
+%\glsxtrnewsymbol[description={velocity vector}]{u}{\ensuremath{\bm{u}}}
+%\glsxtrnewsymbol[description={circulation}]{Gamma}{\ensuremath{\Gamma}}
+%\glsxtrnewsymbol[description={vortex generation circulation}]{Gammavg}{\ensuremath{\Gamma_{vg}}}
+%\glsxtrnewsymbol[description={vortex circulation}]{Gammavtx}{\ensuremath{\Gamma_{vtx}}}
+%\glsxtrnewsymbol[description={advancing ratio}]{mu}{\ensuremath{\mu}}
+%\glsxtrnewsymbol[description={non dimensional frequency}]{k}{\ensuremath{k}}
+%\glsxtrnewsymbol[description={actuation time}]{Deltat}{\ensuremath{\Delta t}}
+%\glsxtrnewsymbol[description={vortex generator Reynolds number}]{Revg}{\ensuremath{Re_{vg}}}
+%\glsxtrnewsymbol[description={target profile Reynolds number}]{Retp}{\ensuremath{Re_{tp}}}
+%\glsxtrnewsymbol[description={Wind tunnel freestream velocity}]{Vinf}{\ensuremath{V_\infty}}
+%\glsxtrnewsymbol[description={Slope of the Lift coefficient curve}]{Clalpha}{\ensuremath{C_{l/\alpha}}}
