@@ -6,6 +6,8 @@
 \usepackage{amssymb}
 \usepackage{float}
 \usepackage{graphicx}
+\graphicspath{{Pictures}
+             }
 \usepackage{listings}
 \usepackage{geometry}
 \usepackage{todonotes}
@@ -16,9 +18,8 @@ sortlocale=de_DE,
 natbib=true,
 url=false, 
 doi=true,
-eprint=false]{biblatex} 
+eprint=false]{biblatex}
 \usepackage{latexsym}
-\usepackage{float}
 \usepackage{bm}
 \usepackage[format=plain,labelfont=bf]{caption}
 \usepackage{subfig}
@@ -29,7 +30,7 @@ eprint=false]{biblatex}
 \usepackage{indentfirst} % indenta la prima riga di ogni nuova sezione
 \usepackage{booktabs} % per le tabelle, permette di usare \toprule ecc
 \usepackage{mathtools}
-\usepackage{braket} %per fare le parentesi graffe degli insiemi
+\usepackage{braket} % per fare le parentesi graffe degli insiemi
 \usepackage{abraces}
 \usepackage{multirow}
 \usepackage{tablefootnote}
@@ -52,11 +53,12 @@ smaller,			% acronimo scritto con dimensione ridotta
 \usepackage{siunitx}
 %\usepackage[symbols,nogroupskip,nonumberlist,automake]{glossaries-extra}
 
-
+\newcommand{\sref}[1]{Section \ref{#1}}
+\newcommand{\fref}[1]{Figure \ref{#1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \addbibresource{references/references.bib} %directory con le references
-\AtBeginDocument{%
+\AtBeginDocument{
 	\renewcommand*{\mkbibnamefamily}[1]{\textsc{#1}}
 }
 
@@ -71,9 +73,9 @@ smaller,			% acronimo scritto con dimensione ridotta
 %\input{secretato}
 \cleardoublepage
 \tableofcontents
-\listoffigures
-\listoftables
-
+%\listoffigures
+%\listoftables
+		
 \cleardoublepage
 
 \mainmatter
@@ -83,40 +85,178 @@ smaller,			% acronimo scritto con dimensione ridotta
 
 %% Indice Provvisorio: Inserire ogni capitolo in un documento a parte.
 \chapter{Introduction}
+\label{sec: intro}
+
 	\section{The \textit{Snow Problem} for in-flight ice accretion}
+	\label{sec: SnowProblem}
+		Why studying the snow is relevant for in-flight ice accretion. What PoliMIce (PoliDrop) needs from this study: $ c_D(Re, param) $ formula and a rule to choose the parameters.
+		
 	\section{Non-spherical particles}
-		\subsection{Models}
-		\subsection{Experiments}
-	\section{Problem Formulation}
-	\section{Structure of the thesis}
+		Introduction to non-spherical particles models: types of models and experiments available (relative to a generic non-spherical particles) and the principal shape factors.
+		
+		\textbf{Models and Experiments examples}\\
+		Explanation of figures like \ref{fig: cube} and \ref{fig: cylinder}.
+		
+		\begin{figure}[]
+			\includegraphics{cube_cD.eps}
+			\caption{}
+			\label{fig: cube}
+		\end{figure}
+		\begin{figure}[]
+			\includegraphics{cube_cD.eps}
+			\caption{}
+			\label{fig: cylinder}
+		\end{figure}
 	
+	\section{Snow experiments}
+		Introduction to available snow experiments. For aerodynamic purposes the most relevant type of measure is the ground experiment conducted with some kind of disdrometer. It gives a measure the particle dimension (often its mean diameter) and a measure of its terminal velocity.
+		
+	\section{Blowing vs Falling regime}
+		Problem with the difference between the regime of the simulations and the regime of the experiments. Our assumption: the model we chose is able to transfer the information about the shape of the particle from the falling to the blowing regime.
+
+		
+	\section{Problem Formulation}
+		Goal of the thesis: The question proposed in \sref{sec: SnowProblem} will be answered by:
+		\begin{enumerate}
+			\item Find a suitable model for the description of the snow $ c_D $
+			\item Use that model to infer the statistical distribution of the shape parameters of a given \textit{cloud} in the \textit{falling regime}
+			\item Transfer this information to the \textit{blowing regime} by implementing the same model with the same parameter distribution in PoliDrop
+		\end{enumerate}	
+
+	\section{Structure of the thesis}
+		Chapter description
+		
+		
 \chapter{Choice of the Model}
 	\section{Chhabra review: Ganser}
-	\section{Heymsfield and Westbrook}
-	\section{Holzer and Sommerfeld}
+		The models must provide information on 2 main aspect: \textit{shape} of the particle (sphericity) and \textit{orientation} of the particle. (Chhabra)
+		Description of the Ganser model (The best up to 1993).
+		\\
+		
+		Description of the more recent models (2004? and 2008)
+				
+	\section{Heymsfield and Westbrook - (2004)}
+		Description of the model ans why it doesn't work.
+		(Do I need to talk about this model?)
+		
+	\section{Holzer and Sommerfeld - (2008)}
+		Description of the model and it's simplified form. Comparison with Ganser: sensitivity study on the parameters of both models and why H\&S better suits the experimental curves of snow
+		(+ "cite" the ICE GENESIS results proving that this model is the better one)
 
-\chapter{Description of the Experimental Set}
-	\section{Brandes Experimental campaign}
-	\section{Data Set generation}
 	
+\chapter{Description of the Data Set}
+	Type of information needed for the parameter estimation ($ d_v $ (some measure of the diameter), $ v_t $ (terminal velocity), $ \sigma $ (measurement error)).
+	
+	Brief description of the available experimental campaigns (Brandes + other 2 references) and their limitations.
+	
+	\section{Brandes Experimental campaign}
+		Description of the Brandes results and impossibility to use the raw data
+		
+	\section{Data Set generation}
+		Generation of an artificial data set starting from the relations discovered by Brandes. The dependency on the diameter distribution is not taken into account as it can be retrieved a posteriori.
+
+
 \chapter{Parameter Estimation}
 	\section{Problem Formulation}
+		Variables, unknown, data declaration.
+
 	\section{Bayes Theorem}
+		Theoretical background on Data Analysis using the Bayes approach. Choice of the prior and the likelihood to find the single, best parameter that explains a certain data set.
+		
 	\section{Gaussian Mixture Model}
+		Need of a multi-modal distribution of the parameter: in a cloud more that one type of shape can be present. Modification of the Likelihood function using GMMs.
+		
+	\section{General scheme}
+		General scheme of the program: Iteratively increase the number of mode allowed up to a certain convergence criterion (Da vedere con Giulio)
+	
 	
 \chapter{Numerical Implementation}
-	\section{General scheme}
+	\section{Terminal Velocity calculation}
+		Equation for the terminal velocity of a particle: how to calculate every term starting from the diameter and the shape parameters
+		
+	\section{Maximization of the Posterior/Likelihood}
+		Calculation of a single posterior element
+		\begin{itemize}
+			\item brute force algorithm
+			\item optimization (Genetic Algorithm)
+			\item Markov-chain method (?)
+		\end{itemize}
+	
 	\section{Code Validation}
-	\section{Results}
+		Validation with totally artificial data set
+		\begin{itemize}
+			\item 1 parameter (\fref{val: 1paramData}, \ref{val: 1param1}, \ref{val: 1param2}, \ref{val: 1param3})
+			\item 2 parameters (\fref{val: 2paramData}, \ref{val: 2param1}, \ref{val: 2param2})
+		\end{itemize}
 	
-\chapter{Integration to PoliMIce}
+		\begin{figure}
+			\centering
+			\includegraphics{validation/1paramData.eps}
+			\caption{}
+			\label{val: 1paramData}
+		\end{figure}
+		\begin{figure}
+			\centering
+			\includegraphics{validation/1param1.eps}
+			\caption{}
+			\label{val: 1param1}
+		\end{figure}
+		\begin{figure}
+			\centering
+			\includegraphics{validation/1param2.eps}
+			\caption{}
+			\label{val: 1param2}
+		\end{figure}
+		\begin{figure}
+			\centering
+			\includegraphics{validation/1param3.eps}
+			\caption{}
+			\label{val: 1param3}
+		\end{figure}
+
+		\begin{figure}
+			\centering
+			\includegraphics[width=\linewidth]{validation/2paramData.eps}
+			\caption{}
+			\label{val: 2paramData}
+		\end{figure}
+		\begin{figure}
+			\centering
+			\includegraphics[width=\linewidth]{validation/2param1.eps}
+			\caption{}
+			\label{val: 2param1}
+		\end{figure}
+		\begin{figure}
+			\centering
+			\includegraphics[width=\linewidth]{validation/2param2.eps}
+			\caption{}
+			\label{val: 2param2}
+		\end{figure}
+
+	\section{Results}
+		Application to the Brandes data set: 
+		\begin{itemize}
+			\item Example for 1 diameter interval
+			\item Shape parameters - diameter distribution (Work in progress)
+		\end{itemize}
+		
+	
+\chapter{Integration to PoliMIce (To Do)}
+	Implementation of the chosen formula for the $ c_D $ in PoliDrop
+	
 	\section{Cloud generation}
+		Some rules to generate the cloud by PoliDrop
+		
 	\section{Results}
-		\subsection{Facciamo Nevicare!}
+		\subsection{Let it snow!}
+			Falling snow test case (Check the terminal velocity distribution for validation?)
+			
 		\subsection{Blowing snow example}
-	
-	
-\cleardoublepage
+			Blowing snow test case: ice accretion on a profile?
+
+
+\chapter{Conclusions and Future developments}
+
 	
 \printbibliography[heading=bibintoc]
 \end{document}
