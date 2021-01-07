@@ -73,23 +73,96 @@
 			c_D = K_2 \left( \frac{24}{Re K_1 K_2} (1 + 0.1118 (Re K_1 K_2)^{0.6567}) + \frac{0.4305}{1 + \frac{3305}{Re K_1 K_2}}\right) 
 		\end{equation}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-%		Description of the Ganser model (The best up to 1993).
 				
-	\section{Holzer and Sommerfeld - (2008)}
-		Description of the model and it's simplified form. 
-		(+ "cite" the ICE GENESIS results proving that this model is the better one)
+	\section{H\"{o}lzer and Sommerfeld - (2008)}
+		The model by H\"{o}ltzer and Sommerfeld \cite{HoltzerSommerfeld-2008} is, in effect, an interpolation of previous models coming from an extensive literature review. The coefficients of their final formula are tuned on a collection of over two thousands experimental data. The $ c_D $ values used are summarized in \fref{fig: LitReviewHS}, featuring spheres, disk and plates, lengthwise spheroids and streamline bodies, isometric particles such as cubes, tetrahedrons and octahedrons and irregularly shaped particles such as minerals.
+		
+		Similarly to Ganser, they used different models for the Stokes' and the Newton's regime. The Stokes' region is characterized by an inverse proportionality between the drag coefficient and the Reynolds number. The formula used is the one suggested by Leith \cite{Leith-1987}:
+		\begin{equation}
+			c_D = \frac{8}{Re} \frac{1}{\sqrt{\Phi_{\perp}}} + \frac{16}{Re} \frac{1}{\Phi}
+			\label{eq: Leith}
+		\end{equation}
+		where the particle orientation is measured by the crosswise sphericity ($ \Phi_{\perp} $), which is defined in \eref{eq: Crosswise} as the ratio between the cross-sectional area of the volume-equivalent sphere w.r.t. the cross-sectional area of the actual particle projected on a plane perpendicular to the velocity vector ($ A_{\textup{p}, \perp} $).
+		\begin{equation}
+			\Phi_{\perp} = \dfrac{\frac{\pi}{4}\ \dv^2} {A_{\textup{p}, \perp}}
+			\label{eq: Crosswise}
+		\end{equation}
+		
+		The first term in \eref{eq: Leith} stands for the pressure or form drag, associated with the size of the projected cross-sectional area, and the second term represents the friction drag, associated with the size of the surface area. Correlation with experimental data showed that the use of the lengthwise sphericity ($ \Phi_{/\!/} $) instead of $ \Phi_{\perp} $ in \eref{eq: Leith} leads to a better approximation of the $ c_D $ in the Stokes region. The lengthwise sphericity is defined in \eref{eq: Lengthwise} as the ratio between the cross-sectional area of the volume-equivalent sphere and the difference between half the surface area ($ A_{\textup{p}} $) and the mean longitudinal (i.e. parallel to the direction of relative flow) projected cross-sectional area of the actual particle ($ \bar{A}_{\textup{p},/\!/} $). Since $ A_{\textup{p},/\!/} $ depends on the angle of view, an arithmetic average over an entire revolution is used.
+		\begin{equation}
+			\Phi_{/\!/} = \dfrac{\frac{\pi}{4}\ \dv^2} {\Delta A} \qquad \text{with: } \qquad \Delta A = \dfrac{A_{\textup{p}}}{2} - \bar{A}_{\textup{p},/\!/}
+		\end{equation}
+
+		For the Newton's regime a two different models are used. The former
+		represents the friction drag of lengthwise particles (small cross-sectional area). The mathematical model describing this phenomenon is, according to Blasius' theory:
+		\begin{equation}
+			c_D = 1.327 \cdot 2 \left(\frac{8}{9}\right)^{\frac{1}{4}} \pi^{\frac{1}{4}} \left(\frac{\text{depth}}{\text{length}}\right)^{\frac{1}{4}} \frac{1}{\Phi^{\frac{3}{4}}} \frac{1}{\sqrt{Re}}
+			\label{eq: Blasius}
+		\end{equation}
+		which, for square plates reduces to:
+		\begin{equation}
+			c_D = 3.43 / (\Phi^{\frac{3}{4}} \sqrt{Re})
+			\label{eq: SimpleBlasius}
+		\end{equation}
+		and this simplified version will be used.
+		
+		The latter derives from the study of Tran-Cong et at \cite{TranCongEtAl-2004} and represent the behaviour of isometric and cross-wise oriented bodies. The $ c_D $ os such particles in the Newton's regime is almost solely determined by form drag, in particular it is approximately proportional to the reciprocal of crosswise sphericity. Merging this study with the literature by Ganser and Leith, H\"{o}ltzer and Sommerfeld proposed the following formula for isometric and crosswise oriented particles at high Reynolds number:
+		\begin{equation}
+			c_D = 0.4210^{0.4(-\log \Phi)^{0.2}} \frac{1}{\Phi_{\perp}}
+			\label{eq: TranCong}
+		\end{equation}
+
+		The correlation formula for the $ c_D $ over the entire range of $ Re  $ results from the addition of \cref{eq: Leith, eq: SimpleBlasius, eq: TranCong} \red{FIX EQUATION REF}:
+		\begin{equation}
+			c_D = \frac{8}{Re} \frac{1}{\sqrt{\Phi_{/\!/}}} 
+			    + \frac{16}{Re} \frac{1}{\sqrt{\Phi}} 
+			    + \frac{3}{\sqrt{Re}} \frac{1}{\Phi^{\frac{3}{4}}} 
+			    + 0.4210^{0.4(-\log \Phi)^{0.2}} \frac{1}{\Phi_{\perp}}
+			\label{eq: HS}
+		\end{equation}
+	
+		In the same paper, they also derive a simplified model of similar performance, in terms of accuracy w.r.t.\ all the available data, depending on two parameters only, namely $\Phi$ and $\Phi_{\perp}$, which reads:
+		\begin{equation}
+			c_D = \frac{8}{Re} \frac{1}{\sqrt{\Phi_{\perp}}} 
+			    + \frac{16}{Re} \frac{1}{\sqrt{\Phi}} 
+			    + \frac{3}{\sqrt{Re}} \frac{1}{\Phi^{\frac{3}{4}}} 
+			    + 0.4210^{0.4(-\log \Phi)^{0.2}} \frac{1}{\Phi_{\perp}}
+			\label{eq: SimpleHS}
+		\end{equation}
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		\begin{figure}
+			\centering
+			\includegraphics[width=\linewidth]{404notFound.png}
+			\caption{Drag coefficient of different shaped particles as function of the Reynolds number. Data from the literature review of Holtzer and Sommerfeld. \cite{HoltzerSommerfeld-2008}}
+			\label{fig: LitReviewHS}
+		\end{figure}
+
+%		Description of the model and it's simplified form. 
 		
 	\section{Heymsfield and Westbrook - (2010)}
 		Description of the model ans why it doesn't work.
@@ -97,6 +170,9 @@
 	\section{Model comparison}
 		comparison between the models and justification of my choice.
 		Comparison H\&S - Ganser: sensitivity study on the parameters of both models and why H\&S better suits the experimental curves of snow
+		
+		(+ "cite" the ICE GENESIS results proving that this model is the better one)		
+		
 	\section{Terminal Velocity calculation}
 		Equation for the terminal velocity of a particle: how to calculate every term starting from the diameter and the shape parameters
 	
