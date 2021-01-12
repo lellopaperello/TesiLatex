@@ -40,7 +40,7 @@
 		Yet, a more significant contribution of this article was the definition
 		of a new standard for a non-spherical particle model, stating that a good correlation formula must account for information on 2 main aspect: \textit{shape} of the particle (sphericity) and \textit{orientation} of the particle. 
 		
-		In the following sections the Ganser model, alongside with two more recent one, will be reviewed and compared on the basis of the literature that is available. 
+		In the following sections the Ganser model, alongside with a more recent one, will be reviewed and compared on the basis of the literature that is available. 
 		
 	\section{Ganser - 1993}
 		The Ganser model \cite{Ganser-1993} comes from empirical correlations of the general drag formula by Haider and Levenspiel \cite{HaiderLevenspiel-1989}:
@@ -59,7 +59,7 @@
 		\begin{equation}
 			K_1 = \left( \frac{1}{3} \frac{\dn}{\dv} + \frac{2}{3} \Phi^{-\frac{1}{2}} \right)^{-1} -2.25 \frac{\dv}{D_{\textup{tube}}} 
 		\end{equation}
-		where the importance of both the shape and the orientation of the particle in the viscous regime ($ Re \ll 1 $) is measured by the \textit{sphericity} ($ \Phi $) and the ratio between the \textit{normal diameter} and the \textit{volume diameter} ($ \dn / \dv $), as already stated by Leith \cite{Leith-1987}, who first introduced the Stokes' shape factor.
+		where the importance of both the shape and the orientation of the particle in the viscous regime ($ Re \ll 1 $) is measured by the \textit{sphericity} ($ \Phi $) and the ratio between the \textit{normal diameter} (diameter of the sphere with the equivalent projected area) and the \textit{volume diameter} ($ \dn / \dv $), as already stated by Leith \cite{Leith-1987}, who first introduced the Stokes' shape factor.
 		Since we will consider only snowflakes falling in an open environment, the second term is negligible, as $ D_{\textup{tube}} \rightarrow \infty $.
 		
 		Thompson and Clark \cite{ThompsonClark-1991} defined the Newton's shape factor as the ratio between the drag coefficient of a particle of a certain shape and the drag coefficient of a sphere, both at Reynolds number of 10 000, following the argument that, at high Reynolds (Newton's regime), the $ c_D $ is approximately constant.
@@ -77,12 +77,20 @@
 	\section{H\"{o}lzer and Sommerfeld - (2008)}
 		The model by H\"{o}ltzer and Sommerfeld \cite{HoltzerSommerfeld-2008} is, in effect, an interpolation of previous models coming from an extensive literature review. The coefficients of their final formula are tuned on a collection of over two thousands experimental data. The $ c_D $ values used are summarized in \fref{fig: LitReviewHS}, featuring spheres, disk and plates, lengthwise spheroids and streamline bodies, isometric particles such as cubes, tetrahedrons and octahedrons and irregularly shaped particles such as minerals.
 		
+		\begin{figure}
+			\centering
+			\includegraphics[width=\linewidth]{404notFound.png}
+			\caption{Drag coefficient of different shaped particles as function of the Reynolds number. Data from the literature review of Holtzer and Sommerfeld. \cite{HoltzerSommerfeld-2008}}
+			\label{fig: LitReviewHS}
+		\end{figure}
+
 		Similarly to Ganser, they used different models for the Stokes' and the Newton's regime. The Stokes' region is characterized by an inverse proportionality between the drag coefficient and the Reynolds number. The formula used is the one suggested by Leith \cite{Leith-1987}:
 		\begin{equation}
 			c_D = \frac{8}{Re} \frac{1}{\sqrt{\Phi_{\perp}}} + \frac{16}{Re} \frac{1}{\Phi}
 			\label{eq: Leith}
 		\end{equation}
 		where the particle orientation is measured by the crosswise sphericity ($ \Phi_{\perp} $), which is defined in \eref{eq: Crosswise} as the ratio between the cross-sectional area of the volume-equivalent sphere w.r.t. the cross-sectional area of the actual particle projected on a plane perpendicular to the velocity vector ($ A_{\textup{p}, \perp} $).
+		Values of $ \Phi_{\perp} $ lesser than 1 correspond to a particle with the axis parallel to the direction of motion bigger than the other one as prolate spheroids and cylinders. On the contrary, particles with $ \Phi_{\perp} > 1 $ are more similar to oblate spheroids and disks.
 		\begin{equation}
 			\Phi_{\perp} = \dfrac{\frac{\pi}{4}\ \dv^2} {A_{\textup{p}, \perp}}
 			\label{eq: Crosswise}
@@ -91,6 +99,7 @@
 		The first term in \eref{eq: Leith} stands for the pressure or form drag, associated with the size of the projected cross-sectional area, and the second term represents the friction drag, associated with the size of the surface area. Correlation with experimental data showed that the use of the lengthwise sphericity ($ \Phi_{/\!/} $) instead of $ \Phi_{\perp} $ in \eref{eq: Leith} leads to a better approximation of the $ c_D $ in the Stokes region. The lengthwise sphericity is defined in \eref{eq: Lengthwise} as the ratio between the cross-sectional area of the volume-equivalent sphere and the difference between half the surface area ($ A_{\textup{p}} $) and the mean longitudinal (i.e. parallel to the direction of relative flow) projected cross-sectional area of the actual particle ($ \bar{A}_{\textup{p},/\!/} $). Since $ A_{\textup{p},/\!/} $ depends on the angle of view, an arithmetic average over an entire revolution is used.
 		\begin{equation}
 			\Phi_{/\!/} = \dfrac{\frac{\pi}{4}\ \dv^2} {\Delta A} \qquad \text{with: } \qquad \Delta A = \dfrac{A_{\textup{p}}}{2} - \bar{A}_{\textup{p},/\!/}
+			\label{eq: Lengthwise}
 		\end{equation}
 
 		For the Newton's regime a two different models are used. The former
@@ -130,49 +139,91 @@
 			\label{eq: SimpleHS}
 		\end{equation}
 		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		\begin{figure}
-			\centering
-			\includegraphics[width=\linewidth]{404notFound.png}
-			\caption{Drag coefficient of different shaped particles as function of the Reynolds number. Data from the literature review of Holtzer and Sommerfeld. \cite{HoltzerSommerfeld-2008}}
-			\label{fig: LitReviewHS}
-		\end{figure}
-
-%		Description of the model and it's simplified form. 
+		During this thesis we will take advantage to the simplified model since it reduces the number of unknowns.
 		
-	\section{Heymsfield and Westbrook - (2010)}
-		Description of the model ans why it doesn't work.
+%	\section{Heymsfield and Westbrook - (2010)}
+%		Description of the model ans why it doesn't work.
 
 	\section{Model comparison}
-		comparison between the models and justification of my choice.
-		Comparison H\&S - Ganser: sensitivity study on the parameters of both models and why H\&S better suits the experimental curves of snow
+		Both the models presented so far have the characteristics to properly describe an arbitrary-shaped particle. Referring to the comparison done by H\"{o}lzer and Sommerfeld \cite{HoltzerSommerfeld-2008}, the Ganser formula works better with isometric particle, having a mean relative deviation of 6.46\% (over the one of 10.9\% of \eref{eq: SimpleHS}) on the comparison of the $ c_D $ expected by the model w.r.t. the experimental one over 655 data considered. Using the same type of comparison they found that their model has an edge on the calculation of the $ c_D $ of disk and plates (386 values), with a mean deviation of 16.8\% over the $ 1.8 \cdot 10^3 \% $ of Ganser's. Also the overall performance of the second model appears to be better: 14.4\% compared to 348\% over all the 2061 values considered. 
 		
-		(+ "cite" the ICE GENESIS results proving that this model is the better one)		
+		Although it seems that the model by H\"{o}lzer and Sommerfeld is the better one, it must be considered that the data used for the comparison are the same data that have ben used to develop the model. A comparison with more recent experiments and perhaps different geometries would be required to properly compare the two formulae. Unfortunately, such data are not present in the literature yet and an experimental campaign for this purpose is unfeasible. 
+		
+		The path we chose is to do a sensitivity study of the two models w.r.t. their free parameters (the shape descriptors), comparing them with the curves provided by Brandes \cite{BrandesIkedEtAl-2008}. These relations have on the abscissa the volume diameter of the particle and on the ordinate the mean terminal velocity of the snowflakes measured in their experimental campaigns. 
+	
+		For a more in-depth discussion on the calculation of the terminal velocity we refer the reader to the next section. 
+	
+		\begin{figure}
+			\centering
+			\includegraphics[width=\linewidth]{HS1.eps}
+			\includegraphics[width=\linewidth]{HS2.eps}
+			\caption[Sensitivity study of the H\"oltzer and Sommerfeld model.]{Sensitivity study of the H\"oltzer and Sommerfeld model. Black lines are experimental curves from \cite{BrandesIkedEtAl-2008}, representing the mean terminal velocity of snowflakes during snowfalls of different temperatures: 
+			$ \tikz[baseline] {\draw[dashed] (0,.5ex)--(.5,.5ex) ;} ~\SI{-1}{\celsius} $,
+			$ \tikz[baseline] {\draw[dash dot] (0,.5ex)--(.5,.5ex) ;} ~\SI{-5}{\celsius} $,
+			$ \tikz[baseline] {\draw[dotted] (0,.5ex)--(.5,.5ex) ;} ~\SI{-10}{\celsius} $}
+			\label{fig: sensitivityHS}
+		\end{figure}	
+	
+		\begin{figure}
+			\centering
+			\includegraphics[width=\linewidth]{Ganser1.eps}
+			\includegraphics[width=\linewidth]{Ganser2.eps}
+			\caption[Sensitivity study of the Ganser model.]{Sensitivity study of the Ganser model. Black lines are experimental curves from \cite{BrandesIkedEtAl-2008}, representing the mean terminal velocity of snowflakes during snowfalls of different temperatures: 
+				$ \tikz[baseline] {\draw[dashed] (0,.5ex)--(.5,.5ex) ;} ~\SI{-1}{\celsius} $,
+				$ \tikz[baseline] {\draw[dash dot] (0,.5ex)--(.5,.5ex) ;} ~\SI{-5}{\celsius} $,
+				$ \tikz[baseline] {\draw[dotted] (0,.5ex)--(.5,.5ex) ;} ~\SI{-10}{\celsius} $}
+			\label{fig: sensitivityGanser}
+		\end{figure}	
+			
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+%		comparison between the models and justification of my choice.
+%		Comparison H\&S - Ganser: sensitivity study on the parameters of both models and why H\&S better suits the experimental curves of snow
+%		
+%		(+ "cite" the ICE GENESIS results proving that this model is the better one)		
 		
 	\section{Terminal Velocity calculation}
-		Equation for the terminal velocity of a particle: how to calculate every term starting from the diameter and the shape parameters
+		The terminal velocity is the maximum velocity attainable by an object as it falls by effect of the gravity field. It is obtained, in the case of snow, when the sum of the drag ($ F_{D} $) and the buoyancy force ($ F_B $) balances the weight of the particle ($ W $). Under the assumption that the effects of aerodynamic forces and moments, on direction other than the falling one, are negligible, the governing equation reads:
+		\begin{equation}
+			\underbrace{\frac{1}{2} \rho v_t^2 S_{\perp} c_D(Re, \text{model}, \text{shape})}_{F_{D}} = 
+			\underbrace{\frac{\pi}{6} \dv^3 \rho_{\textup{p}} g}_{W} - 
+			\underbrace{\frac{\pi}{6} \dv^3 \rho_{\textup{p}} g}_{F_B}
+			\label{eq: governing}
+		\end{equation}
+		which, after some simplification can be written as:
+		\begin{equation}
+			\vt^2 c_D(Re(\vt, \dv), \text{model}, \text{shape}) = 
+			\frac{\pi}{3} \dfrac{\rho_{\textup{p}(\dv)} - \rho}{\rho} \dfrac{\dv^3}{S_{\perp}} g
+			\label{eq: terminalVelocity}
+		\end{equation}
+		The reference surface is taken as the area of the particle projected to a plane perpendicular to the velocity vector and can be retrieved from the shape descriptor if the model accounts for the orientation of the particle, it is taken as $ \pi \dv^2 $ otherwise. Equations \ref{eq: areaGanser} and \ref{eq: areaHS} give the specialization of the reference surface for the Ganser and the H\"oltzer and Sommerfeld models, respectively.
+		\begin{multicols}{2}
+			\begin{equation}
+				S_{\perp} = \pi \dn^2 = \pi \left( \frac{\dn}{\dv} \right)^2 \dv^2
+				\label{eq: areaGanser}
+			\end{equation}\break
+			\begin{equation}
+				S_{\perp} \simeq A_{\textup{p}, \perp} = \dfrac{\pi}{4 \Phi}
+				\label{eq: areaHS}
+			\end{equation}
+		\end{multicols}
+		
+		For the calculation of $ \rho_{\textup{p}} $ an empirical formula found by Brandes \cite{Brandes-2008} is used:
+		\begin{equation}
+			\rho_{\textup{p}(\dv)} = 0.178\ \dv^{-0.922}
+		\end{equation}
+		where the density of snow is measured in $ kg / m^3 $ and the diameter is measured in $ m $. 
+		The equation for the terminal velocity (\ref{eq: terminalVelocity}) is thus solved iteratively for the unknown $ \vt $, while $ \dv $ is the independent variable and \textit{model} and \textit{shape} are the free parameters coming from the shape descriptors.
+		
+%		Equation for the terminal velocity of a particle: how to calculate every term starting from the diameter and the shape parameters
 	
