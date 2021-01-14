@@ -58,6 +58,7 @@ smaller,			% acronimo scritto con dimensione ridotta
 %\usepackage[symbols,nogroupskip,nonumberlist,automake]{glossaries-extra}
 
 \newcommand{\sref}[1]{Section \ref{#1}}
+\newcommand{\chref}[1]{Chapter \ref{#1}}
 \newcommand{\fref}[1]{Figure \ref{#1}}
 \newcommand{\eref}[1]{Equation \ref{#1}}
 
@@ -98,7 +99,7 @@ smaller,			% acronimo scritto con dimensione ridotta
 
 %% Indice Provvisorio: Inserire ogni capitolo in un documento a parte.
 \chapter{Introduction}
-\label{sec: intro}
+\label{ch: intro}
 
 	\section{The \textit{Snow Problem} for in-flight ice accretion}
 	\label{sec: SnowProblem}
@@ -147,6 +148,7 @@ smaller,			% acronimo scritto con dimensione ridotta
 \include{SnowModels}
 
 \chapter{Parameter Estimation}
+\label{ch: Estmation}
 	\section{Problem Formulation}
 		Variables, unknown, data declaration.
 
@@ -167,79 +169,10 @@ smaller,			% acronimo scritto con dimensione ridotta
 			\item Markov-chain method (?)
 		\end{itemize}
 	
-	
-\chapter{Results}
-	\section{Test case 1 - Code Verification}
-		Verification with totally artificial data set
-		\begin{itemize}
-			\item 1 parameter (\fref{val: 1paramData}, \ref{val: 1param1}, \ref{val: 1param2}, \ref{val: 1param3})
-			\item 2 parameters (\fref{val: 2paramData}, \ref{val: 2param1}, \ref{val: 2param2})
-		\end{itemize}
-	
-		\begin{figure}
-			\centering
-			\includegraphics{validation/1paramData.eps}
-			\caption{}
-			\label{val: 1paramData}
-		\end{figure}
-		\begin{figure}
-			\centering
-			\includegraphics{validation/1param1.eps}
-			\caption{}
-			\label{val: 1param1}
-		\end{figure}
-		\begin{figure}
-			\centering
-			\includegraphics{validation/1param2.eps}
-			\caption{}
-			\label{val: 1param2}
-		\end{figure}
-		\begin{figure}
-			\centering
-			\includegraphics{validation/1param3.eps}
-			\caption{}
-			\label{val: 1param3}
-		\end{figure}
-
-		\begin{figure}
-			\centering
-			\includegraphics[width=\linewidth]{validation/2paramData.eps}
-			\caption{}
-			\label{val: 2paramData}
-		\end{figure}
-		\begin{figure}
-			\centering
-			\includegraphics[width=\linewidth]{validation/2param1.eps}
-			\caption{}
-			\label{val: 2param1}
-		\end{figure}
-		\begin{figure}
-			\centering
-			\includegraphics[width=\linewidth]{validation/2param2.eps}
-			\caption{}
-			\label{val: 2param2}
-		\end{figure}
-
-	\section{Test case 2 - Experimental Dataset}
-		Brief description of the available experimental campaigns (Brandes + other 2 references) and their limitations.
-	
-		\subsection{Brandes Experimental campaign}
-		Description of the Brandes results and impossibility to use the raw data
-		
-		\subsection{Data Set generation}
-		Generation of an artificial data set starting from the relations discovered by Brandes. The dependency on the diameter distribution is not taken into account as it can be retrieved a posteriori.
-	
-		\subsection{Application to the Brandes data set}
-		\begin{itemize}
-			\item Example for 1 diameter interval
-			\item Shape parameters - diameter distribution (Work in progress)
-		\end{itemize}
-		
-	\section{Test case 3 - Let it snow!}
-		Falling snow test case (Check the terminal velocity distribution) with PoliDrop
-	
+\include{Results}	
 	
 \chapter{Application to In-Flight Ice Accretion}
+\label{ch: Application}
 	\section{PoliDrop}
 	Description of PoliDrop
 	Implementation of the chosen formula for the $ c_D $ in PoliDrop
@@ -252,7 +185,7 @@ smaller,			% acronimo scritto con dimensione ridotta
 
 
 \chapter{Conclusions and Future developments}
-
+\label{ch: Conclusion}
 	
 \printbibliography[heading=bibintoc]
 \end{document}
